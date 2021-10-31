@@ -1,0 +1,106 @@
+<form
+  class="row g-3 needs-validation"
+  novalidate
+  style="padding: 1rem 0"
+  [formGroup]="form"
+  (submit)="createOwner()">
+
+  <div fxLayout="column" fxlayoutAlign="center start" fxFlex>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationCustom01" value="" required formControlName="aLastName">
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationCustom02" value="" required formControlName="aFirstName">
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Middle name</label>
+      <input type="text" class="form-control" id="validationCustom03" value="" required formControlName="aMiddleName">
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+  </div>
+  <h2>Cars</h2>
+  <ng-container class="col-12" formArrayName="cars">
+    <ng-container *ngFor="let carForm of cars.controls; let i = index" >
+      <div fxLayout="row" [formGroup]="carForm" >
+        <div class="col-md-2">
+          <label for="validationCustom04" class="form-label">State number</label>
+          <input type="text" class="form-control" id="validationCustom04" value="" required placeholder="AA1111BB"
+                 formControlName="stateNumber">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="validationCustom05" class="form-label">Brand</label>
+          <input type="text" class="form-control" id="validationCustom05" value="" required formControlName="brand">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="validationCustom06" class="form-label">Model</label>
+          <input type="text" class="form-control" id="validationCustom06" value="" required formControlName="model">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="validationCustom07" class="form-label">Year</label>
+          <input type="number" class="form-control" id="validationCustom07" value="" required placeholder="2020"
+                 formControlName="year">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div fxLayout="row" fxlayoutAlign="end end">
+          <button type="button" class="btn btn-danger" (click)="deleteCar(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <div fxLayout="column" fxlayoutAlign="start center">
+    <button
+      type="button"
+      class="btn col-md-2 btn-primary"
+      (click)="addCar()">
+      <div fxLayout="row" fxlayoutAlign="center center">
+        <mat-icon style="margin-right: 0.4rem">add</mat-icon>
+        Add new car
+      </div>
+    </button>
+    <div class="col-md-2" fxLayout="row" fxLayoutAlign="space-between center">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        style="margin-top: 1rem"
+        [disabled]="!form.valid">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+          <mat-icon style="margin-right: 0.4rem">save</mat-icon>
+          Save
+        </div>
+      </button>
+      <button
+        class="btn btn-secondary"
+        type="submit"
+        style="margin-top: 1rem"
+        (click)="getBack()">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+          <mat-icon style="margin-right: 0.4rem">arrow_back</mat-icon>
+          Back
+        </div>
+      </button>
+    </div>
+  </div>
+</form>

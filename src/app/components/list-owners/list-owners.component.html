@@ -1,0 +1,96 @@
+<div class="list-container">
+  <div class="list-container__body">
+    <div class="list-container__buttons">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="goToAddForm()">
+        <div fxlayout="row" fxLayoutAlign="center center">
+          <mat-icon style="margin-right: 0.3rem">add</mat-icon>
+          Add owner
+        </div>
+      </button>
+      <div fxlayout="row" fxlayoutAlign="center center" fxFlex style="margin-left:2rem">
+        <button
+          type="button"
+          class="btn btn-secondary" (click)="showOwner()">
+          <div fxLayout="row" fxLayoutalign="center center">
+            <mat-icon style="margin-right: 0.4rem ">visibility</mat-icon>Show
+          </div>
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary" (click)="handlerEditOwner()">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-icon style="margin-right: 0.4rem">edit</mat-icon>Edit
+          </div>
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="deleteOwner()">
+          <div fxlayout="row" fxLayoutAlign="center center">
+            <mat-icon style="margin-right: 0.4rem">delete</mat-icon>Delete
+          </div>
+        </button>
+      </div>
+    </div>
+    <ng-container *ngIf="toggle">
+      <app-add-form (onAddNewOwner)="updateOwners($event)" [toggle]="toggle"
+                    (onChangeToggle)="changeToggle($event)"></app-add-form>
+    </ng-container>
+    <router-outlet></router-outlet>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Name</th>
+        <th scope="col">Middle name</th>
+        <th scope="col">Cars</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let owner of owners" (click)="onClickRow(owner.aId)">
+        <th scope="row">{{owner.aId}}</th>
+        <td>{{owner.aLastName}}</td>
+        <td>{{owner.aFirstName}}</td>
+        <td>{{owner.aMiddleName}}</td>
+        <td>{{owner.aCars.length}}</td>
+      </tr>
+      </tbody>
+    </table>
+<ng-container *ngIf="editOwnerForm" style="border: 1px solid">
+  <form [formGroup]="editOwnerForm" (submit)="saveChanges()">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationCustom01" value="" formControlName="aLastName" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationCustom02" value="" formControlName="aFirstName" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Middle name</label>
+      <input type="text" class="form-control" id="validationCustom03" value="" formControlName="aMiddleName" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" style="margin-top: 1rem">
+      <button type="submit" class="btn btn-primary" style="margin-right: 1rem">Save changes</button>
+      <button type="button" class="btn btn-light" (click)="cancelOwnerForm()">Cancel</button>
+    </div>
+  </form>
+</ng-container>
+    <div>
+    <app-owner *ngFor="let owner of selectedOwners" [owner]="owner"></app-owner>
+    </div>
+  </div>
+</div>
