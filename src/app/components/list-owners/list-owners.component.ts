@@ -83,4 +83,8 @@ export class ListOwnersComponent implements OnInit {
   closeShow(toggle: boolean) {
     this.toggleShow = toggle
   }
+
+  changeToggle(toggle: boolean) {
+    this.toggle = toggle
+  }
 }
