@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CarEntity, OwnerEntity} from "../../model/owner.interface";
 
 @Component({
@@ -7,9 +7,11 @@ import {CarEntity, OwnerEntity} from "../../model/owner.interface";
   styleUrls: ['./owner.component.scss']
 })
 export class OwnerComponent implements OnInit {
-  @Input() owner!: OwnerEntity
-  @Input() car!: CarEntity
-  @Input() selectedOwners!: OwnerEntity[]
+  @Input() owner: OwnerEntity
+  @Input() car: CarEntity
+  @Input() selectedOwners: OwnerEntity[]
+  @Input() toggleShow: boolean;
+  @Output() onChangeToggleShow: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
   }
@@ -18,4 +20,8 @@ export class OwnerComponent implements OnInit {
 
   }
 
+  closeForm() {
+    this.toggleShow = !this.toggleShow;
+    this.onChangeToggleShow.emit(this.toggleShow)
+  }
 }

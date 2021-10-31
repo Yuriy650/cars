@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OwnerService} from "../../owner.service";
 import {OwnerEntity} from "../../model/owner.interface";
-import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -13,6 +12,7 @@ export class ListOwnersComponent implements OnInit {
   owners: OwnerEntity[]=[];
   owner!: OwnerEntity;
   toggle = false;
+  toggleShow = true
   aId: number|null = null;
   selectedOwners: OwnerEntity[] = [];
   editOwner: OwnerEntity;
@@ -38,11 +38,10 @@ export class ListOwnersComponent implements OnInit {
     this.owners = owners
   }
 
-  changeToggle(toggle: boolean) {
-    this.toggle = toggle
-  }
+
 
   showOwner() {
+    this.toggleShow = true
     this.selectedOwners = this.owners.filter(item=> item.aId === this.aId)
   }
 
@@ -79,5 +78,9 @@ export class ListOwnersComponent implements OnInit {
   cancelOwnerForm() {
     // @ts-ignore
     this.editOwnerForm = null
+  }
+
+  closeShow(toggle: boolean) {
+    this.toggleShow = toggle
   }
 }

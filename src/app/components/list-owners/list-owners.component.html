@@ -89,8 +89,8 @@
     </div>
   </form>
 </ng-container>
-    <div>
-    <app-owner *ngFor="let owner of selectedOwners" [owner]="owner"></app-owner>
+    <div *ngIf="toggleShow">
+    <app-owner *ngFor="let owner of selectedOwners" [owner]="owner" [toggleShow]="toggleShow" (onChangeToggleShow)="closeShow($event)"></app-owner>
     </div>
   </div>
 </div>
