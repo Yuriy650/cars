@@ -38,8 +38,6 @@ export class ListOwnersComponent implements OnInit {
     this.owners = owners
   }
 
-
-
   showOwner() {
     this.toggleShow = true
     this.selectedOwners = this.owners.filter(item=> item.aId === this.aId)

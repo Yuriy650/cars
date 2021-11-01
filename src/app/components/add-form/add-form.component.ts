@@ -55,6 +55,7 @@ export class AddFormComponent implements OnInit {
       ]),
       year: new FormControl('', [
         Validators.required,
+        Validators.minLength(4),
         Validators.maxLength(4)
       ])
     });
